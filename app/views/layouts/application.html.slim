@@ -10,7 +10,9 @@ html
   body
     div class="container"
       = render 'layouts/header'
-      = yield
-      = render 'layouts/footer'
+      div.store
+        = yield
+      div.btmbar
+        = render 'layouts/footer'
 
 

@@ -1,14 +1,18 @@
 FsNotes::Application.routes.draw do
   
-  get "static_pages/About"
-
-  get "static_pages/Imprint"
-
-  get "static_pages/TermsOfService"
-
-  get "static_pages/PrivacyPolicy"
-
   root :to => "home#index"
+  
+  match '/about', :to => 'static_pages#About'
+
+  match '/imprint', :to => 'static_pages#Imprint'
+  
+  match '/terms', :to => 'static_pages#TermsOfService'
+
+  match '/policy', :to => 'static_pages#PrivacyPolicy'
+
+
+
+ 
  
 
   # The priority is based upon order of creation:
