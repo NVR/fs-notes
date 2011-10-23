@@ -1,7 +1,15 @@
 FsNotes::Application.routes.draw do
   
+  get "static_pages/About"
+
+  get "static_pages/Imprint"
+
+  get "static_pages/TermsOfService"
+
+  get "static_pages/PrivacyPolicy"
+
   root :to => "home#index"
-  match '/search'=> 'www.google.com'
+ 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
