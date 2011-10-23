@@ -1,6 +1,7 @@
 FsNotes::Application.routes.draw do
   
   root :to => "home#index"
+  match '/search'=> 'www.google.com'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
