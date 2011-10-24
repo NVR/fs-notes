@@ -14,8 +14,14 @@ div.topbar
           == submit_tag("Search") 
 
       ul.nav.secondary-nav
-        li = link_to "Sign in", '#'
-        li = link_to "Register", '#'
-        li = link_to "someshit", '#'
+        - if user_signed_in?
+          li = link_to "Signed in as  #{current_user.email} ",edit_user_registration_path
+          
+          li = link_to "Not you? Sign out" , destroy_user_session_path, :method => 'delete'
+        - else
+          li = link_to "Sign up", new_user_registration_path 
+          li = link_to "Sign in", new_user_session_path
+        
+          
 
       
