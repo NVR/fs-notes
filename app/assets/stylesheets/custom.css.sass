@@ -63,14 +63,32 @@ section
   border: 3px solid #666
   padding: 10px
   margin: 15px
-  background: lighten($yellow, 15%)
+  background: lighten($yellow, 20%)
+  width: 200px
+  height: 200px
+  display: inline-block
+  /*p
+    background: lighten($yellow, 10%)*/
+.shadow 
+  box-shadow: 0 0 5px black
+  box-shadow: 0 0 10px rgba(0,0,0,0.5)
+  -moz-box-shadow: 0 0 10px rgba(0,0,0,0.5)
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5)
+
 
 .store
   padding: 70px 0 70px
 .actions
-  li
+  li.black
     a
       color: #000
       text-decoration: none
     a:hover
       text-decoration: none
+  li.white
+    a
+      color: #fff
+      text-decoration: none
+    a:hover
+      text-decoration: none
+

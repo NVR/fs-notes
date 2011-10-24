@@ -23,9 +23,14 @@
   </div>
   <div class="actions">
     <%= f.submit :class => "btn primary"%>
-  <li class="btn">
-    <%= link_to 'Back', notes_path %>
-  </li>
+    <%- if @title=='Edit note'%>
+      <li class="btn info white">
+        <%= link_to 'Show', @note %> 
+      </li>
+    <% end %>
+      <li class="btn black">
+        <%= link_to 'Back', notes_path %>
+      </li>
   </div>
   </fieldset>
 <% end %>
