@@ -1,0 +1,30 @@
+= form_for(@note) do |f| 
+  - if @note.errors.any? 
+    - @title ='Error'
+    div.error_explanation.alert-message.block-message.error
+      h2 #{pluralize(@note.errors.count, "error")} prohibited this note from being saved:
+      ul
+        - @note.errors.full_messages.each do |msg| 
+          li = msg 
+
+  fieldset
+    div.clearfix
+      = f.label :title 
+      div.input
+        = f.text_field :title 
+
+    div.clearfix
+      = f.label :body 
+      div class="input"
+        = f.text_area :body ,:rows=>'7'
+
+    div.actions
+      = f.submit :class => "btn primary mod"
+      - if @title == 'Edit note' or @title == 'Error'
+        li.btn.danger.white
+          = link_to 'Destroy', @note, confirm: 'Are you sure?', method: :delete 
+      li.btn.black
+        - if @title == 'New note'
+          = link_to 'Back', notes_path 
+        - else
+          = link_to 'Back', @note

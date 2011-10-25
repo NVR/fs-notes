@@ -1,0 +1,78 @@
+// Place all the styles related to the notes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$yellow: #ffc40d
+$black: #000
+#note_body
+  width: 700px
+  overflow-x: hidden
+
+.inline
+  font-size: 110%
+  display: inline-block
+  padding-bottom: 10px
+  margin-right: 10px
+  height: 15px
+  a
+    font-size: 90%
+    margin-right: 5px
+
+.timestamp
+  font-size: 70%
+  text-align: right
+
+.title
+  font-size: 120%
+  font-weight: bold
+  font-style: italic
+  a
+    font-size: 100%
+    font-weight: bold
+    font-style: italic
+    color: $black
+  a:hover
+    text-decoration: none
+    color: lighten($black, 20%)
+.body
+  font-style: italic
+
+.shownote
+  border: 3px solid #666
+  padding: 10px
+  margin: 15px
+  background: lighten($yellow, 20%)
+  width: 700px
+  height: 400px
+  word-wrap: break-word
+  scrollbar-3dlight-color: darken(#000, 10%)
+  box-shadow: 0 0 5px black
+  box-shadow: 0 0 10px rgba(0,0,0,0.5)
+  -moz-box-shadow: 0 0 10px rgba(0,0,0,0.5)
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5)
+
+.overflowsn
+  overflow: hidden
+  overflow-y: scroll
+  width: 700px
+  height: 370px
+  word-wrap: break-word
+
+.blkbtn
+  a
+    color: #000
+    text-decoration: none
+  a:hover
+    text-decoration: none
+
+.overflow
+  width: 170px
+  height: 150px
+  overflow: hidden
+  word-wrap: break-word
+
+hr
+  box-shadow: 0 0 5px black
+  box-shadow: 0 0 10px rgba(0,0,0,0.5)
+  -moz-box-shadow: 0 0 10px rgba(0,0,0,0.5)
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5)
+

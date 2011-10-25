@@ -1,0 +1,14 @@
+- if notice.present?
+  p.alert-message = notice 
+
+div.shownote
+
+  div.overflowsn
+    p.title
+      = @note.title 
+    hr
+    p.body 
+      = simple_format(@note.body)
+
+  div.inline.btn.blkbtn
+    = link_to 'Edit', edit_note_path(@note) 
