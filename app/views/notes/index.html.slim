@@ -1,0 +1,17 @@
+h1 Listing notes
+
+div.btn.blkbtn
+  = link_to 'New Note', new_note_path 
+br
+- @notes.each do |note| 
+  div.notes.shadow
+    div.overflow
+      p.title = note.title 
+      hr.shadow
+      p.body = note.body
+    p.timestamp Posted #{time_ago_in_words(note.created_at)} ago 
+    div.inline.blkbtn
+       = link_to 'Show', note 
+       = link_to 'Edit', edit_note_path(note) 
+       = link_to 'Destroy', note, confirm: 'Are you sure?', method: :delete 
+
