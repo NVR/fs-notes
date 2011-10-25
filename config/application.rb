@@ -38,9 +38,14 @@ module FsNotes
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    # 4 devise
+    config.secret_token = '1a6c9d59a72f096ed3e03fb318416bf0125f0bf278b6ab7252d7543ee28e46fcbc38595328033e7ac6dfc475e8167d7eb640362da82760897fae7b286f8d6278'
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    # 4Devise
+    config.assets.initialize_on_precompile = false
+
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'

@@ -9,6 +9,7 @@ gem 'rails', '3.1.1'
 gem 'therubyracer'
 gem 'execjs'
 gem 'slim'
+gem 'devise'
 
 group :development do
   gem 'sqlite3'
