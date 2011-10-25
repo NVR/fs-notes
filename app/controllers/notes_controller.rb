@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
-  
+  before_filter :authenticate_user!, :except =>[:index, :show]
+
   def index
     @notes = Note.all
   end
@@ -14,12 +15,14 @@ class NotesController < ApplicationController
   end
 
   def edit
+
     @note = Note.find(params[:id])
     @title = 'Edit note'
   end
 
   def create
-    @note = Note.new(params[:note])
+    @note = current_user.notes.build(params[:note])
+    #@note = Note.new(params[:note])
     @title = 'New note'
     respond_to do |format|
       if @note.save

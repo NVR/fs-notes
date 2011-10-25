@@ -9,6 +9,6 @@ div.shownote
     hr
     p.body 
       = simple_format(@note.body)
-
-  div.inline.btn.blkbtn
-    = link_to 'Edit', edit_note_path(@note) 
+  - if user_signed_in?
+    div.inline.btn.blkbtn
+      = link_to 'Edit', edit_note_path(@note) 

@@ -6,7 +6,6 @@ FsNotes::Application.routes.draw do
   resources :notes
 
   root :to => "notes#index"
-
   
   match '/about', :to => 'static_pages#About'
 
