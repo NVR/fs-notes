@@ -10,6 +10,7 @@ class NotesController < ApplicationController
 
   def new
     @note = Note.new
+    @title = 'New note'
   end
 
   def edit
@@ -19,6 +20,7 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(params[:note])
+    @title = 'New note'
     respond_to do |format|
       if @note.save
         format.html { redirect_to @note, notice: 'Note was successfully created.' }

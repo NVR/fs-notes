@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $yellow: #ffc40d
-
+$black: #000
 #note_body
   width: 700px
   overflow-x: hidden
@@ -19,12 +19,20 @@ $yellow: #ffc40d
 
 .timestamp
   font-size: 70%
+  text-align: right
 
 .title
   font-size: 120%
   font-weight: bold
   font-style: italic
-
+  a
+    font-size: 100%
+    font-weight: bold
+    font-style: italic
+    color: $black
+  a:hover
+    text-decoration: none
+    color: lighten($black, 30%)
 .body
   font-style: italic
 
@@ -61,7 +69,7 @@ $yellow: #ffc40d
   height: 150px
   overflow: hidden
   word-wrap: break-word
-  
+
 hr
   box-shadow: 0 0 5px black
   box-shadow: 0 0 10px rgba(0,0,0,0.5)
