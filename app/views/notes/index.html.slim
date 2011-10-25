@@ -7,7 +7,7 @@ br
   div.notes
     div.overflow
       p.title = note.title 
-      hr.shadow
+      hr
       p.body = simple_format(note.body)
     p.timestamp Posted #{time_ago_in_words(note.created_at)} ago 
     div.inline.blkbtn
