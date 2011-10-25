@@ -4,7 +4,7 @@ div.btn.blkbtn
   = link_to 'New Note', new_note_path 
 br
 - @notes.each do |note| 
-  div.notes.shadow
+  div.notes
     div.overflow
       p.title = note.title 
       hr.shadow
@@ -14,4 +14,3 @@ br
        = link_to 'Show', note 
        = link_to 'Edit', edit_note_path(note) 
        = link_to 'Destroy', note, confirm: 'Are you sure?', method: :delete 
-
