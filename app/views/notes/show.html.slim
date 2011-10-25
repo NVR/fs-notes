@@ -8,7 +8,7 @@ div.shownote.shadow
       = @note.title 
     hr.shadow
     p.body 
-      = @note.body 
+      = simple_format(@note.body)
 
   div.inline.btn.blkbtn
     = link_to 'Edit', edit_note_path(@note) 
