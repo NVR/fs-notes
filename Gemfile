@@ -10,6 +10,7 @@ gem 'therubyracer'
 gem 'execjs'
 gem 'slim'
 gem 'devise'
+gem 'kaminari'
 
 group :development do
   gem 'sqlite3'
