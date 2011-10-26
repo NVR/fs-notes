@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111026083234) do
+ActiveRecord::Schema.define(:version => 20111026142254) do
 
   create_table "notes", :force => true do |t|
     t.string   "title"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(:version => 20111026083234) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.boolean  "markdown"
   end
 
   create_table "users", :force => true do |t|
