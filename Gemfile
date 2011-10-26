@@ -10,6 +10,9 @@ gem 'therubyracer'
 gem 'execjs'
 gem 'slim'
 gem 'devise'
+gem 'redcarpet'
+gem 'nokogiri'
+gem 'albino'
 
 group :development do
   gem 'sqlite3'

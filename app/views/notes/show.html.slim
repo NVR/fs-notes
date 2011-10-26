@@ -8,7 +8,8 @@ div.shownote
       = @note.title 
     hr
     p.body 
-      = simple_format(@note.body)
+      = markdown(@note.body)
+      
   - if user_signed_in?
     div.inline.btn.blkbtn
       = link_to 'Edit', edit_note_path(@note) 
