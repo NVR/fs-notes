@@ -10,6 +10,6 @@ section.device
         = f.email_field :email 
 
       div
-        = f.submit "Resend confirmation instructions" 
+        = f.submit "Resend confirmation instructions" ,:class=> "btn"
 
       = render :partial => "devise/shared/links" 

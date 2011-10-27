@@ -10,6 +10,6 @@ section.device
         = f.email_field :email 
 
       div
-        = f.submit "Send me reset password instructions" 
+        = f.submit "Send me reset password instructions" ,:class=> "btn"
 
       = render :partial => "devise/shared/links" 

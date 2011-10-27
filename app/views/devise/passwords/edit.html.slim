@@ -15,6 +15,6 @@ section.device
         = f.password_field :password_confirmation 
 
       div
-        = f.submit "Change my password" 
+        = f.submit "Change my password" ,:class=> "btn"
 
       = render :partial => "devise/shared/links" 
