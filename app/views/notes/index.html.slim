@@ -4,6 +4,7 @@ h1 Listing notes
   div.btn.blkbtn
     = link_to 'New Note', new_note_path 
 br
+
 - @notes.each do |note| 
   div.notes
     div.overflow
@@ -14,3 +15,5 @@ br
         = markdown(note.body)
     hr
     p.timestamp Posted #{time_ago_in_words(note.created_at)} ago by #{note.user.email}
+
+= paginate @notes

@@ -1,8 +1,8 @@
 class NotesController < ApplicationController
-  before_filter :authenticate_user!, :except =>[:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show]
 
   def index
-    @notes = Note.all
+    @notes = Note.page(params[:page])
   end
 
   def show
