@@ -1,10 +1,5 @@
 h1 Listing notes
 
-- if user_signed_in?
-  div.btn.blkbtn
-    = link_to 'New Note', new_note_path 
-br
-
 - @notes.each do |note| 
   div.notes
     div.overflow
