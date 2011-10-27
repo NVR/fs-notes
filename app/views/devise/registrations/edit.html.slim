@@ -12,16 +12,16 @@ section.device
       div
         = f.label :password 
         = f.password_field :password 
-        i (leave blank if you don't want to change it)
+        i.input.help-block (leave blank if you don't want to change it)
 
-      div
+      
         = f.label :password_confirmation 
         = f.password_field :password_confirmation 
 
       div
         = f.label :current_password  
         = f.password_field :current_password 
-        i (we need your current password to confirm your changes)
+        i.input.help-block (we need your current password to confirm your changes)
 
       div
         = f.submit "Update" ,:class=> "btn"
