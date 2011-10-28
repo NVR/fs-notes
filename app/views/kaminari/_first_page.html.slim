@@ -6,5 +6,5 @@
 -#    per_page:      number of items to fetch per page
 -#    remote:        data-remote
 
-span.first 
+span.first class=(current_page.first? ? 'disabled' : '')
   = link_to raw(t 'views.pagination.first'), url, :remote => remote 

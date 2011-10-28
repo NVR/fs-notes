@@ -13,12 +13,10 @@ div
     div.preview
       = f.text_area :body ,:rows=>'1'
 
-    p.title = @note.title
-    hr
+    h1.page-header = @note.title
     p.body = markdown(@note.body)
-    hr
 
-    div.actions
+    div.actions.padding
       = f.submit :class => "btn primary mod" , :value => "Save"
       = f.submit :class => "btn info mod" , :value => "Back"
       li.btn.black

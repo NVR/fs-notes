@@ -1,5 +1,13 @@
 class NotesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :page_exceedance?
+  #require 'config/initializers/kaminari_config'
+
+  def page_exceedance?
+    if params[:page].to_i > Note.pages_count
+      params[:page] = (Note.pages_count).to_s
+    end
+  end
 
   def index
     @notes = Note.page(params[:page])
