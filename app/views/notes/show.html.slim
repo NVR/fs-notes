@@ -1,14 +1,32 @@
-- if notice.present?
-  p.alert-message = notice 
+div.container-fluid
+  div.sidebar
+    div.alert-message.block-message.shadow.warning
+      h1.page-header Author
+      p =@note.user.email
 
-div
+    div
+      h3.page-header Other notes from this author
+      - @usernotes = @note.user.notes
+      - @usernotes.each do |note| 
+        div.shadow.alert-message.block-message.info
+          div.overflow
+            div.page-header
+              h1.title = link_to note.title, note 
+            p.body = markdown(note.body)
 
-  div
-    div.page-header
-      h1 = @note.title 
-    p.body 
-      = markdown(@note.body)
-    div.actions.padding
-      - if user_signed_in?
-        div.btn.blkbtn
-          = link_to 'Edit', edit_note_path(@note) 
+  div.content
+    - if notice.present?
+      p.alert-message = notice 
+
+    div
+
+      div
+        div.page-header
+          h1 = @note.title 
+        p.body 
+          = markdown(@note.body)
+        div.actions.padding
+          - if user_signed_in?
+            div.btn.blkbtn
+              = link_to 'Edit', edit_note_path(@note) 
+
