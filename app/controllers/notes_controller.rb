@@ -4,6 +4,7 @@ class NotesController < ApplicationController
 
   def search
     params[:search]
+    @notes = Note.where(params[:search])
   end
 
   def page_exceedance?
