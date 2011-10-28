@@ -1,7 +1,7 @@
-section.device
-  h2  Sign up
+section.container
+  h2.page-header  Sign up
 
-  div
+  div.form-stacked
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| 
       = devise_error_messages!
 
@@ -18,8 +18,7 @@ section.device
         = f.password_field :password_confirmation 
       br
 
-      div
+      div.actions
         = f.submit "Sign up" ,:class=> "btn"
-
-      = render :partial => "devise/shared/links"
+        = render :partial => "devise/shared/links"
 
