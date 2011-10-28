@@ -10,36 +10,51 @@ class NotesController < ApplicationController
   end
 
   def new
+    @preview = false
     @note = Note.new
     @title = 'New note'
   end
 
   def edit
-
     @note = Note.find(params[:id])
     @title = 'Edit note'
+    @preview = false
   end
 
   def create
     @note = current_user.notes.build(params[:note])
     #@note = Note.new(params[:note])
     @title = 'New note'
-    respond_to do |format|
+
+    if params[:commit] == "Preview"
+      @preview = true
+      render action: 'new'
+    elsif params[:commit] == "Back"
+      @preview = false
+      render action: 'new'
+    else
       if @note.save
-        format.html { redirect_to @note, notice: 'Note was successfully created.' }
+        redirect_to @note, notice: 'Note was successfully created.' 
       else
-        format.html { render action: "new" }
+        render action: "new" 
       end
     end
   end
 
   def update
     @note = Note.find(params[:id])
-    respond_to do |format|
+    if params[:commit] == "Preview"
+      @note.update_attributes(params[:note])
+      @preview = true
+      render action: "edit"
+    elsif params[:commit] == "Back"
+      @preview = false
+      render action: "edit"
+    else
       if @note.update_attributes(params[:note])
-        format.html { redirect_to @note, notice: 'Note was successfully updated.' }
+        redirect_to @note, notice: 'Note was successfully updated.'
       else
-        format.html { render action: "edit" }
+        render action: "edit"
       end
     end
   end
@@ -47,8 +62,6 @@ class NotesController < ApplicationController
   def destroy
     @note = Note.find(params[:id])
     @note.destroy
-    respond_to do |format|
-      format.html { redirect_to notes_url }
-    end
+    redirect_to notes_url
   end
 end

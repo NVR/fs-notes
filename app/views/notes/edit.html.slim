@@ -1,3 +1,5 @@
 h1 Editing note
-
-= render 'form' 
+- if @preview
+  = render 'preview'
+- else
+  = render 'form'
