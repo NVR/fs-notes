@@ -1,3 +1,11 @@
+form.pull-left
+  = form_tag("/search", :method => "get") do 
+    == text_field_tag(:search) 
+    == submit_tag("Search") 
+  = Note.count
+
+br
+
 - @notes.each do |note| 
   div.notes.alert-message.block-message.shadow.info
     div.overflow

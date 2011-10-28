@@ -6,11 +6,6 @@ div.topbar
         li.logo = link_to image_tag("fsl.png",:height => '28'), '/'
         li = link_to "Topics", '#'
         
-      form.pull-left
-        = form_tag("/search", :method => "get") do 
-          == text_field_tag(:search) 
-          == submit_tag("Search") 
-
       ul.nav.secondary-nav
         - if user_signed_in?
           li = link_to 'New Note', new_note_path
@@ -20,7 +15,3 @@ div.topbar
         - else
           li = link_to "Sign up", new_user_registration_path 
           li = link_to "Sign in", new_user_session_path
-        
-          
-
-      

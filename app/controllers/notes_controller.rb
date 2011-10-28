@@ -2,13 +2,6 @@ class NotesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :page_exceedance?
 
-  def search
-    if params[:commit] == "Search"
-      @notes = Note.find_by_title_and_body(params[:search])
-      render action: 'search'
-    end
-  end
-
   def page_exceedance?
     if params[:page].to_i > Note.pages_count
       params[:page] = (Note.pages_count).to_s
