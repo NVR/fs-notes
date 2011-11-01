@@ -18,7 +18,6 @@ gem 'nokogiri'
 #pagination gem
 gem 'kaminari'
 
-
 group :development do
   gem 'sqlite3'
 end

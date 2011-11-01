@@ -71,4 +71,5 @@ class NotesController < ApplicationController
     @note.destroy
     redirect_to notes_url
   end
+
 end
