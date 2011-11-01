@@ -1,6 +1,10 @@
 FsNotes::Application.routes.draw do
   
 
+  get "search/index"
+
+  get "search/livesearch"
+
   devise_for :users
 
   resources :notes
