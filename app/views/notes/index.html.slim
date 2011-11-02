@@ -1,18 +1,11 @@
-
-
-br
-
-- @notes.each do |note| 
-  div.notes.alert-message.block-message.shadow.info
-    div.overflow
-      -# user = User.where(:index => note.user_id).first
+div.container
+  - @notes.each do |note| 
+    div.notes.alert-message.block-message.shadow.info
       div.page-header
-        h1.title = link_to note.title, note 
+          h3.title = link_to note.title, note 
+      div.overflow
+        p.body.ellipsis         
+          = markdown(note.body)
 
-      br
-      p.body         
-        = markdown(note.body)
-    hr
-    p.timestamp Posted #{time_ago_in_words(note.created_at)} ago by #{note.user.email}
 
-= paginate @notes
+  = paginate @notes

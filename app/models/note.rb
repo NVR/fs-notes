@@ -1,5 +1,5 @@
 class Note < ActiveRecord::Base
-  PER_PAGE = 8
+  PER_PAGE = 9
   validates :title,:body, :presence => true
   
   belongs_to :user
