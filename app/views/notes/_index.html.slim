@@ -1,0 +1,10 @@
+- @notes.each do |note| 
+  div.notes.alert-message.block-message.shadow.info
+    div.overflow
+      div.page-header
+        h1.title = link_to note.title, note 
+      br
+      p.body
+        = markdown(note.body)
+
+= paginate @notes
