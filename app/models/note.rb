@@ -1,4 +1,9 @@
 class Note < ActiveRecord::Base
+  #
+  scope :search,->(search) { 
+    search_condition = "%" + search + "%"
+    where('title LIKE ? OR body LIKE ?', search_condition, search_condition)
+  } 
   PER_PAGE = 8
   validates :title,:body, :presence => true
   
@@ -9,10 +14,10 @@ class Note < ActiveRecord::Base
   def self.pages_count
     self.count / PER_PAGE + 1
   end
-  
-  def self.search(search)
-    search_condition = "%" + search + "%"
-    find(:all, :conditions => ['title LIKE ? OR body LIKE ?', search_condition, search_condition])
-  end
+
+  #def self.search(query)
+  #  search_condition = "%" + query + "%"
+  #  where('title LIKE ? OR body LIKE ?', search_condition, search_condition)
+  #end
 
 end

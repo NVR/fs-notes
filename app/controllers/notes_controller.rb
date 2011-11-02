@@ -9,7 +9,12 @@ class NotesController < ApplicationController
   end
 
   def index
-    @notes = Note.page(params[:page])
+    if params[:search].present?
+      @notes = Note.search(params[:search])
+      @notes = @notes.page(params[:page])
+    else
+      @notes = Note.page(params[:page])
+    end
   end
 
   def show
