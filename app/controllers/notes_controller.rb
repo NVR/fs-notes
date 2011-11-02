@@ -11,9 +11,11 @@ class NotesController < ApplicationController
   def index
     if params[:search].present?
       @notes = Note.search(params[:search])
+      @count = @notes.count
       @notes = @notes.page(params[:page])
     else
       @notes = Note.page(params[:page])
+      @count = @notes.count
     end
   end
 
