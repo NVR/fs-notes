@@ -1,4 +1,5 @@
 class Note < ActiveRecord::Base
+  
   PER_PAGE = 8
   validates :title,:body, :presence => true
   
