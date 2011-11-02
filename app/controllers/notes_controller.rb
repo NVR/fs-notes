@@ -71,4 +71,9 @@ class NotesController < ApplicationController
     @note.destroy
     redirect_to notes_url
   end
+
+  def search
+    @searchresult = Note.search(params[:search])
+  end
+
 end
