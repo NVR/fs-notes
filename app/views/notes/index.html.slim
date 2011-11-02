@@ -1,17 +1,11 @@
-
-
-br
-
-- @notes.each do |note| 
-  div.notes.alert-message.block-message.shadow.info
-    div.overflow
-      -# user = User.where(:index => note.user_id).first
+div.container
+  - @notes.each do |note| 
+    div.notes.alert-message.block-message.shadow.info
       div.page-header
-        h1.title = link_to note.title, note 
+          h3.title = link_to note.title, note 
+      div.overflow
+        p.body.ellipsis         
+          = markdown(note.body)
 
-      br
-      p.body.ellipsis         
-        = markdown(note.body)
 
-
-= paginate @notes
+  = paginate @notes
