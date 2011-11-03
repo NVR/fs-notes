@@ -27,7 +27,5 @@ div.container-fluid
           = markdown(@note.body)
         p.timestamp Posted #{time_ago_in_words(@note.created_at)} ago
         div.actions.padding
-          - if user_signed_in? && (current_user.id == @note.user_id)
-            div.btn.blkbtn
-              = link_to 'Edit', edit_note_path(@note) 
-
+          - if can_edit?(@note)
+            = link_to 'Edit', edit_note_path(@note), :class => 'btn'

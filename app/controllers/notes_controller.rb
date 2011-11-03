@@ -1,14 +1,7 @@
 class NotesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :page_exceedance?
-  before_filter :permission_to_edit?, :only => [:edit, :delete]
-
-  def permission_to_edit?
-    @note = Note.find(params[:id])
-    unless current_user.id == @note.user_id
-      render action: 'show'
-    end
-  end
+  before_filter :can_edit?, :only => [:edit, :delete]
 
   def page_exceedance?
     if params[:page].to_i > Note.pages_count
@@ -79,4 +72,13 @@ class NotesController < ApplicationController
     @note.destroy
     redirect_to notes_url
   end
+  private
+    def can_edit?
+      @note = Note.find(params[:id])
+      unless current_user.id == @note.user_id
+        redirect_to @note , notice: "You can't edit other people's notes."
+      end
+    end
+
+
 end
