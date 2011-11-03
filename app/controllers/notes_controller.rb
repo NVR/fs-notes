@@ -1,6 +1,14 @@
 class NotesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :page_exceedance?
+  before_filter :permission2edit?, :only =>[:edit,:delete]
+
+  def permission2edit?
+    @note = Note.find(params[:id])
+    if !(current_user.id == @note.user_id)
+    render action: 'show'
+    end
+  end
 
   def page_exceedance?
     if params[:page].to_i > Note.pages_count
