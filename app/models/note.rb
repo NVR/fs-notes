@@ -4,7 +4,9 @@ class Note < ActiveRecord::Base
     search_condition = "%" + search + "%"
     where('title LIKE ? OR body LIKE ?', search_condition, search_condition)
   } 
-  PER_PAGE = 8
+
+  PER_PAGE = 9
+
   validates :title,:body, :presence => true
   
   belongs_to :user

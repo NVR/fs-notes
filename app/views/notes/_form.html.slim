@@ -9,13 +9,13 @@
 
 
   fieldset.form-stacked
-    div.clearfix
+    div.clearfix class=( @note.errors[:title].any? ? 'error':'')
       = f.label :title 
       div.input
         = f.text_field :title 
     
 
-    div.clearfix
+    div.clearfix class=( @note.errors[:body].any? ? 'error':'')
       = f.label :body 
       div class="input"
         = f.text_area :body ,:rows=>'7'

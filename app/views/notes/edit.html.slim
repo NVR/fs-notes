@@ -1,5 +1,6 @@
-h1.page-header Editing note
-- if @preview
-  = render 'preview'
-- else
-  = render 'form'
+div.container
+  h1.page-header Editing note
+  - if @preview
+    = render 'preview'
+  - else
+    = render 'form'
