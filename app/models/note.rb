@@ -4,6 +4,8 @@ class Note < ActiveRecord::Base
   
   belongs_to :user
 
+  has_and_belongs_to_many :topics
+
   paginates_per PER_PAGE
 
   def self.pages_count
