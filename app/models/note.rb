@@ -15,9 +15,4 @@ class Note < ActiveRecord::Base
     self.count / PER_PAGE + 1
   end
 
-  #def self.search(query)
-  #  search_condition = "%" + query + "%"
-  #  where('title LIKE ? OR body LIKE ?', search_condition, search_condition)
-  #end
-
 end
