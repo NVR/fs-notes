@@ -9,7 +9,14 @@ class NotesController < ApplicationController
   end
 
   def index
-    @notes = Note.page(params[:page])
+    if params[:search].present?
+      @notes = Note.search(params[:search])
+      @count = @notes.count
+      @notes = @notes.page(params[:page])
+    else
+      @notes = Note.page(params[:page])
+      @count = @notes.count
+    end
   end
 
   def show
@@ -71,4 +78,9 @@ class NotesController < ApplicationController
     @note.destroy
     redirect_to notes_url
   end
+
+  def search
+    @searchresult = Note.search(params[:search])
+  end
+
 end

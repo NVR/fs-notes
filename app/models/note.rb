@@ -1,4 +1,9 @@
 class Note < ActiveRecord::Base
+
+  scope :search,->(search) { 
+    search_condition = "%" + search + "%"
+    where('title LIKE ? OR body LIKE ?', search_condition, search_condition)
+  } 
   PER_PAGE = 8
   validates :title,:body, :presence => true
   
