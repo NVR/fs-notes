@@ -15,7 +15,7 @@ class NotesController < ApplicationController
       @notes = @notes.page(params[:page])
     else
       @notes = Note.page(params[:page])
-      @count = @notes.count
+      @count = Note.count
     end
   end
 

@@ -9,11 +9,11 @@ div.container-fluid
       - @usernotes = @note.user.notes
       - @usernotes.each do |note| 
         div.shadow.alert-message.block-message.info
+          div.page-header
+            h3.title = link_to note.title, note 
           div.overflow
-            div.page-header
-              h1.title = link_to note.title, note 
-            p.body = markdown(note.body)
-
+            p.body.ellipsis         
+              = markdown(note.body)
   div.content
     - if notice.present?
       p.alert-message = notice 
