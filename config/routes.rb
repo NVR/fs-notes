@@ -1,9 +1,6 @@
 FsNotes::Application.routes.draw do
   
 
-  get "search/index"
-
-  get "search/livesearch"
 
   devise_for :users
 
@@ -18,6 +15,8 @@ FsNotes::Application.routes.draw do
   match '/terms', :to => 'static_pages#TermsOfService'
 
   match '/policy', :to => 'static_pages#PrivacyPolicy'
+
+  match '/topics', :to => 'notes#topics'
 
 
 

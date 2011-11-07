@@ -74,9 +74,7 @@ class NotesController < ApplicationController
   end
 
   def not_current?(note)
-  unless note.id == Note.find(params[:id]).id
-    true
-  end
+  note.id == Note.find(params[:id]).id
   end
 
 end

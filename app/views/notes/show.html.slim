@@ -7,7 +7,7 @@ div.container-fluid
       h3.page-header Other notes from this author
       - @usernotes = @note.user.notes
       - @usernotes.each do |note| 
-        - if not_current?(note)
+        - unless not_current?(note)
           div.shadow.alert-message.block-message.info
             div.overflow
               div.page-header
