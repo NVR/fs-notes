@@ -1,6 +1,5 @@
 div.indexcenter
-  - @title ='Notes associated with ' + @topic.name
-  = render :partial => 'notes/search'
+  = render 'notes/search'
   - if params[:topic_id].present?
-    = render :partial => 'index'
+    = render 'index'
 

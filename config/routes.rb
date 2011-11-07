@@ -4,7 +4,7 @@ FsNotes::Application.routes.draw do
 
   devise_for :users
 
-  resources :notes
+  resources :notes 
 
   root :to => "notes#index"
   
