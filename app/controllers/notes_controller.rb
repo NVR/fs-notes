@@ -11,6 +11,7 @@ class NotesController < ApplicationController
       params[:page] = (Note.pages_count).to_s
     end
   end
+  
   def topics
     @title = 'Topics'
     if params[:topic_id].present?
