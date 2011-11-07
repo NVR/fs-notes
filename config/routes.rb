@@ -18,7 +18,7 @@ FsNotes::Application.routes.draw do
 
   match '/topics', :to => 'notes#topics'
 
-
+  resources :topics, :only =>'show'
  
  
 

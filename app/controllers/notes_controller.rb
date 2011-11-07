@@ -1,13 +1,9 @@
 class NotesController < ApplicationController
-  helper_method :editable?, :not_current?, :existing_topics
+  helper_method :editable?, :not_current?
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :page_exceedance?
   before_filter :can_edit?, :only => [:edit, :delete]
   
-  def existing_topics
-     Topic.all
-  end
-
   def page_exceedance?
     if params[:page].to_i > Note.pages_count
       params[:page] = (Note.pages_count).to_s
