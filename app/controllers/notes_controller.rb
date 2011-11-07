@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :page_exceedance?
+  helper_method :not_current?
 
   def page_exceedance?
     if params[:page].to_i > Note.pages_count
@@ -71,4 +72,11 @@ class NotesController < ApplicationController
     @note.destroy
     redirect_to notes_url
   end
+
+  def not_current?(note)
+  unless note.id == Note.find(params[:id]).id
+    true
+  end
+  end
+
 end

@@ -2,17 +2,17 @@ div.container-fluid
   div.sidebar
     div.alert-message.block-message.shadow.warning
       h1.page-header Author
-      p =@note.user.email
-
+      p = @note.user.email
     div
       h3.page-header Other notes from this author
       - @usernotes = @note.user.notes
       - @usernotes.each do |note| 
-        div.shadow.alert-message.block-message.info
-          div.overflow
-            div.page-header
-              h1.title = link_to note.title, note 
-            p.body = markdown(note.body)
+        - if not_current?(note)
+          div.shadow.alert-message.block-message.info
+            div.overflow
+              div.page-header
+                h1.title = link_to note.title, note 
+              p.body = markdown(note.body)
 
   div.content
     - if notice.present?
