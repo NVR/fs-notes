@@ -11,6 +11,20 @@ class NotesController < ApplicationController
       params[:page] = (Note.pages_count).to_s
     end
   end
+  def topics
+    @title = 'Topics'
+    if params[:topic_id].present?
+      @topic = Topic.find(params[:topic_id])
+      if params[:search].present?
+        @notes = Topic.find(params[:topic_id]).notes.search(params[:search])
+        @count = @notes.count
+        @notes = @notes.page(params[:page])
+      else
+        @notes = Topic.find(params[:topic_id]).notes.page(params[:page])
+        @count = Topic.find(params[:topic_id]).notes.count
+      end
+    end
+  end
 
   def index
     if params[:search].present?

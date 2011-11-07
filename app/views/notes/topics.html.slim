@@ -1,7 +1,6 @@
 div.container
-  h1.page-header List of topics
+  h1.page-header List of #{@topic.name} notes
+  = render :partial => 'notes/search'
+  - if params[:topic_id].present?
+    = render :partial => 'index'
 
-  - Topic.all.each do |topic|
-    p = link_to topic.name, '#'
-    
-    p = topic.notes
