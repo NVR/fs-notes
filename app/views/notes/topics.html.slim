@@ -1,5 +1,5 @@
-div.container
-  h1.page-header List of #{@topic.name} notes
+div.indexcenter
+  - @title ='Notes associated with ' + @topic.name
   = render :partial => 'notes/search'
   - if params[:topic_id].present?
     = render :partial => 'index'

@@ -4,10 +4,9 @@ div.topbar
       
       ul.nav
         li.logo = link_to image_tag("fsl.png",:height => '28'), '/'
-        li.drowdown data-dropdown = "drowdown" = link_to Topics,'#', :class => 'dropdown-toggle'
-          ul.dropdown-menu
-            - Topic.all.each do |topic|
-              li = link_to topic.name, topics_path(:topic_id => topic.id)
+        li.dropdown data-dropdown="dropdown"
+          = link_to 'Topics' ,'#', :class => "dropdown-toggle"
+          = render 'layouts/dropdown-menu'
       ul.nav.secondary-nav
         - if user_signed_in?
           li = link_to 'New Note', new_note_path
