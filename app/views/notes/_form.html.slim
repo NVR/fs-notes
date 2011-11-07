@@ -16,7 +16,7 @@
       
     div.clearfix
       = f.label "Topics"
-      - for topic in Topic.all
+      - existing_topics.each do |topic|
         div.input.checkbox
           = check_box_tag "note[topic_ids][]", topic.id, @note.topics.include?(topic)
           = topic.name 
