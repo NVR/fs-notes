@@ -3,9 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $yellow: #ffc40d
 $black: #000
+$silver: #C0C0C0
 #note_body
-  width: 700px
+  width: 898px
   overflow-x: hidden
+  
+#search_field
+  height: 19px
 
 .inline
   font-size: 110%
@@ -73,11 +77,42 @@ $black: #000
   overflow: hidden
   word-wrap: break-word
 
+
 hr
   box-shadow: 0 0 5px black
   box-shadow: 0 0 10px rgba(0,0,0,0.5)
   -moz-box-shadow: 0 0 10px rgba(0,0,0,0.5)
   -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5)
 
-.preview
+.hidden
   display: none
+
+.ellipsis
+  background: -moz-linear-gradient(center top , rgba(255, 255, 255, 0), white) repeat scroll 0 0 transparent
+  background: -khtml-gradient(linear, left top, left bottom, from(#333333), to(#222222))
+  background: -ms-linear-gradient(center top , rgba(255, 255, 255, 0), white) repeat scroll 0 0 transparent
+  background: -webkit-gradient(linear, left top, left center, color-stop(0%, #333333), color-stop(100%, #222222))
+  background: -webkit-linear-gradient(center top , rgba(255, 255, 255, 0), white) repeat scroll 0 0 transparent
+  background: -o-linear-gradient(center top , rgba(255, 255, 255, 0), white) repeat scroll 0 0 transparent
+  background: linear-gradient(center top , rgba(255, 255, 255, 0), white) repeat scroll 0 0 transparent
+  background-repeat: repeat-x
+  bottom: 0px
+  height: 70px
+  left: 0
+  position: absolute
+  width: 100%
+  z-index: 2
+
+.center
+  padding-right: 50%
+
+.small-block
+  height: 100px
+  font-size: 13px
+  width: 200px
+  height: 100px
+  overflow: hidden
+  word-wrap: break-word
+  h1,h2,h3,h4
+    font-size: 16px
+

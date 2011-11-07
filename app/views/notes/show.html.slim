@@ -9,10 +9,11 @@ div.container-fluid
       - @usernotes.each do |note| 
         - unless not_current?(note)
           div.shadow.alert-message.block-message.info
-            div.overflow
+            div.small-block
               div.page-header
-                h1.title = link_to note.title, note 
-              p.body = markdown(note.body)
+                h4.title = link_to note.title, note 
+              p.body.ellipsis         
+                  = markdown(note.body)
 
   div.content
     - if notice.present?
@@ -28,8 +29,7 @@ div.container-fluid
             i.help-block.topic = link_to topic.name, '#'
         p.body 
           = markdown(@note.body)
+        p.timestamp Posted #{time_ago_in_words(@note.created_at)} ago
         div.actions.padding
-          - if user_signed_in?
-            div.btn.blkbtn
-              = link_to 'Edit', edit_note_path(@note) 
-
+          - if editable?(@note)
+            = link_to 'Edit', edit_note_path(@note), :class => 'btn'

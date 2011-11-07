@@ -1,6 +1,7 @@
-h1.page-header List of topics
+div.container
+  h1.page-header List of topics
 
-- Topic.all.each do |topic|
-  p = link_to topic.name, '#'
-  
-  p = topic.notes
+  - Topic.all.each do |topic|
+    p = link_to topic.name, '#'
+    
+    p = topic.notes

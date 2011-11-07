@@ -1,7 +1,10 @@
 class NotesController < ApplicationController
+  helper_method :editable?
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :page_exceedance?
   helper_method :not_current?
+  before_filter :can_edit?, :only => [:edit, :delete]
+
 
   def page_exceedance?
     if params[:page].to_i > Note.pages_count
@@ -10,7 +13,14 @@ class NotesController < ApplicationController
   end
 
   def index
-    @notes = Note.page(params[:page])
+    if params[:search].present?
+      @notes = Note.search(params[:search])
+      @count = @notes.count
+      @notes = @notes.page(params[:page])
+    else
+      @notes = Note.page(params[:page])
+      @count = Note.count
+    end
   end
 
   def show
@@ -73,8 +83,27 @@ class NotesController < ApplicationController
     redirect_to notes_url
   end
 
+
   def not_current?(note)
   note.id == Note.find(params[:id]).id
   end
+
+
+  def search
+    @searchresult = Note.search(params[:search])
+  end
+
+  private
+    def can_edit?
+      @note = Note.find(params[:id])
+      unless editable?(@note)
+        redirect_to @note , notice: "You can't edit other people's notes."
+      end
+    end
+
+    def editable?(note)
+      user_signed_in? && (current_user.id == note.user_id)
+    end
+
 
 end

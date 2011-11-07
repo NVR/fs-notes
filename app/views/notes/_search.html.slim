@@ -1,0 +1,5 @@
+div.container.searchcenter
+  = form_tag search_path, :action =>'search', :method => 'get' do 
+    = text_field_tag :search, params[:search], :id => 'search_field' , :class => "mod"
+    = submit_tag "Search", :name => nil , :class => "btn primary"
+    span.mod = pluralize @count, 'note', 'notes'

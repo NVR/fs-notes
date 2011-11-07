@@ -1,6 +1,6 @@
 FsNotes::Application.routes.draw do
   
-
+  match '/search', :to =>"notes#index"
 
   devise_for :users
 
