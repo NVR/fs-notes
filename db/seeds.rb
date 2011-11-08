@@ -5,4 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Topic.destroy_all
 topics = Topic.create([{ name: 'Ruby' }, { name: 'RoR' }, { name: 'Cucumber'}, { name: 'Spec' }])
