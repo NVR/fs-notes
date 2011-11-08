@@ -3,7 +3,11 @@ class NotesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :page_exceedance?
   before_filter :can_edit?, :only => [:edit, :delete]
-  
+  expose (:note) do
+    @preview = false
+    @title = 'New note'
+  end
+
   def page_exceedance?
     if params[:page].to_i > Note.pages_count
       params[:page] = (Note.pages_count).to_s
@@ -54,9 +58,7 @@ class NotesController < ApplicationController
 
   def create
     @note = current_user.notes.build(params[:note])
-    #@note = Note.new(params[:note])
     @title = 'New note'
-
     if params[:commit] == "Preview"
       @preview = true
       render action: 'new'

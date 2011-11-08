@@ -1,25 +1,19 @@
 = simple_form_for @note do |f| 
   - if @note.errors.any? 
     - @title ='Error'
-    div.error_explanation.alert-message.block-message.error
-      h2 #{pluralize(@note.errors.count, "error")} prohibited this note from being saved:
-      ul
-        - @note.errors.full_messages.each do |msg| 
-          li = msg 
-
 
   fieldset.form-stacked
-    div.clearfix 
+    div.clearfix class=( @note.errors[:title].any? ? 'error':'')
       div.input
-        = f.input :title, :label => :Title 
+        = f.input :title, :required => false
       
     div.clearfix
       div.input.checkbox
         = f.association :topics, :as => :check_boxes
 
-    div.clearfix 
+    div.clearfix  class=( @note.errors[:body].any? ? 'error':'')
       div.input
-        = f.input :body, :label => :Body
+        = f.input :body, :required => false
 
     div.actions
       = f.button :submit, :class => "btn primary mod" , :value => (@title == 'Edit note' ? "Update" : "Create Note")
