@@ -1,4 +1,4 @@
-= form_for(@note) do |f| 
+= simple_form_for @note do |f| 
   - if @note.errors.any? 
     - @title ='Error'
     div.error_explanation.alert-message.block-message.error
@@ -9,27 +9,21 @@
 
 
   fieldset.form-stacked
-    div.clearfix class=( @note.errors[:title].any? ? 'error':'')
-      = f.label :title 
+    div.clearfix 
       div.input
-        = f.text_field :title 
+        = f.input :title, :label => :Title 
       
     div.clearfix
-      = f.label "Topics"
-      - existing_topics.each do |topic|
-        div.input.checkbox
-          = check_box_tag "note[topic_ids][]", topic.id, @note.topics.include?(topic)
-          = topic.name 
+      div.input.checkbox
+        = f.association :topics, :as => :check_boxes
 
-    div.clearfix class=( @note.errors[:body].any? ? 'error':'')
-      = f.label :body 
-      div class="input"
-        = f.text_area :body ,:rows=>'7'
+    div.clearfix 
+      div.input
+        = f.input :body, :label => :Body
 
     div.actions
-      = f.submit :class => "btn primary mod" , :value => (@title == 'Edit note' ? "Update" : "Create Note")
-      
-      =f.submit :class => "btn info mod" , :value => "Preview"
+      = f.button :submit, :class => "btn primary mod" , :value => (@title == 'Edit note' ? "Update" : "Create Note")
+      = f.button :submit, :class => "btn info mod" , :value => "Preview"
 
       - if @title == 'Edit note' or @title == 'Error'
         li.btn.danger.white

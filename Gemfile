@@ -8,7 +8,6 @@ gem 'rails', '3.1.1'
 
 gem 'therubyracer'
 gem 'execjs'
-gem 'slim'
 gem 'devise'
 
 #markdown gems
@@ -18,6 +17,10 @@ gem 'nokogiri'
 #pagination gem
 gem 'kaminari'
 
+#readable_code
+gem 'slim'
+gem 'simple_form'
+gem 'decent_exposure'
 
 group :development do
   gem 'sqlite3'
