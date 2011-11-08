@@ -4,7 +4,7 @@ FsNotes::Application.routes.draw do
 
   devise_for :users
 
-  resources :notes
+  resources :notes 
 
   root :to => "notes#index"
   
@@ -16,8 +16,9 @@ FsNotes::Application.routes.draw do
 
   match '/policy', :to => 'static_pages#PrivacyPolicy'
 
+  match '/topics', :to => 'notes#topics'
 
-
+  resources :topics, :only =>'show'
  
  
 

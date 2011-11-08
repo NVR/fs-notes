@@ -4,13 +4,13 @@ div.topbar
       
       ul.nav
         li.logo = link_to image_tag("fsl.png",:height => '28'), '/'
-        li = link_to "Topics", '#'
-        
+        li.dropdown data-dropdown="dropdown"
+          = link_to 'Topics' ,'#', :class => "dropdown-toggle"
+          = render 'layouts/dropdown-menu'
       ul.nav.secondary-nav
         - if user_signed_in?
           li = link_to 'New Note', new_note_path
           li = link_to "Signed in as  #{current_user.email} ",edit_user_registration_path
-          
           li = link_to "Not you? Sign out" , destroy_user_session_path, :method => 'delete'
         - else
           li = link_to "Sign up", new_user_registration_path 

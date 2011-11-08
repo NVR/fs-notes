@@ -1,13 +1,28 @@
 class NotesController < ApplicationController
-  helper_method :editable?
+  helper_method :editable?, :not_current?
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :page_exceedance?
   before_filter :can_edit?, :only => [:edit, :delete]
-
+  
   def page_exceedance?
     if params[:page].to_i > Note.pages_count
       params[:page] = (Note.pages_count).to_s
     end
+  end
+
+  def topics
+    if params[:topic_id].present?
+      @topic = Topic.find(params[:topic_id])
+      if params[:search].present?
+        @notes = Topic.find(params[:topic_id]).notes.search(params[:search])
+        @count = @notes.count
+        @notes = @notes.page(params[:page])
+      else
+        @notes = Topic.find(params[:topic_id]).notes.page(params[:page])
+        @count = Topic.find(params[:topic_id]).notes.count
+      end
+    end
+    @title = "Notes associated with #{@topic.name}"
   end
 
   def index
@@ -81,11 +96,16 @@ class NotesController < ApplicationController
     redirect_to notes_url
   end
 
+  def not_current?(note)
+    note.id == params[:id].to_i
+  end
+
   def search
     @searchresult = Note.search(params[:search])
   end
 
   private
+
     def can_edit?
       @note = Note.find(params[:id])
       unless editable?(@note)
