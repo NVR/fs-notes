@@ -97,7 +97,7 @@ class NotesController < ApplicationController
   end
 
   def not_current?(note)
-    note.id == Note.find(params[:id]).id
+    note.id == params[:id].to_i
   end
 
   def search
