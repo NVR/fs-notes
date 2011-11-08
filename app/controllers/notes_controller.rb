@@ -14,29 +14,29 @@ class NotesController < ApplicationController
     end
   end
 
-  def topics
+  def index
     if params[:topic_id].present?
       @topic = Topic.find(params[:topic_id])
+      @notes = @topic.notes
+      @title = "Notes associated with #{@topic.name}"
       if params[:search].present?
-        @notes = Topic.find(params[:topic_id]).notes.search(params[:search])
+        @notes = @notes.search(params[:search])
         @count = @notes.count
         @notes = @notes.page(params[:page])
       else
-        @notes = Topic.find(params[:topic_id]).notes.page(params[:page])
-        @count = Topic.find(params[:topic_id]).notes.count
+        @count = @notes.count
+        @notes = @notes.page(params[:page])
       end
-    end
-    @title = "Notes associated with #{@topic.name}"
-  end
-
-  def index
-    if params[:search].present?
-      @notes = Note.search(params[:search])
-      @count = @notes.count
-      @notes = @notes.page(params[:page])
     else
-      @notes = Note.page(params[:page])
-      @count = Note.count
+      @title = "Notes"
+      if params[:search].present?
+        @notes = Note.search(params[:search])
+        @count = @notes.count
+        @notes = @notes.page(params[:page])
+      else
+        @notes = Note.page(params[:page])
+        @count = Note.count
+      end
     end
   end
 
@@ -100,10 +100,6 @@ class NotesController < ApplicationController
 
   def not_current?(note)
     note.id == params[:id].to_i
-  end
-
-  def search
-    @searchresult = Note.search(params[:search])
   end
 
   private

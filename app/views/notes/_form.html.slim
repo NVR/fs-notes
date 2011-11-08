@@ -4,15 +4,13 @@
 
   fieldset.form-stacked
     div.clearfix class=( @note.errors[:title].any? ? 'error':'')
-      div.input
         = f.input :title, :required => false
       
     div.clearfix
-      div.input.checkbox
+      div.checkbox
         = f.association :topics, :as => :check_boxes
 
     div.clearfix  class=( @note.errors[:body].any? ? 'error':'')
-      div.input
         = f.input :body, :required => false
 
     div.actions
