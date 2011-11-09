@@ -2,12 +2,10 @@ div.container
   h2.page-header Resend unlock instructions
 
   div.form-stacked
-    = form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| 
-      = devise_error_messages! 
+    = simple_form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| 
 
-      div
-        = f.label :email 
-        = f.email_field :email 
+      div.clearfix class=(resource.errors.any? ? 'error' : '')
+        = f.input :email 
 
       div.actions
         = f.submit "Resend unlock instructions" ,:class=> "btn"
