@@ -6,7 +6,7 @@ div.container
 
       = f.input :reset_password_token , :as => :hidden
 
-      div.clearfix class=(resource.errors.any? ? 'error' : '')
+      div.clearfix
         = f.input :password, :label => "New password" 
         = f.input :password_confirmation, :label => "Confirm new password"
 

@@ -2,16 +2,16 @@ div.container
   h2.page-header Sign in
 
   div.form-stacked
-    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| 
+    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
 
-      div.clearfix   
-        = f.input :email 
-        = f.input :password 
+      div.clearfix
+        = f.input :email
+        = f.input :password
         br
         - if devise_mapping.rememberable? 
           = f.input :remember_me , :as => :boolean
 
 
       div.actions
-        = f.submit "Sign in" ,:class=> "btn mod "
+        = f.button :submit, "Sign in" ,:class=> "btn mod "
         = render :partial => "devise/shared/links" 

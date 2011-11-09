@@ -4,8 +4,8 @@ div.container
   div.form-stacked
     = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
 
-      div.clearfix class=(resource.errors.any? ? 'error' : '')
-        = f.input :email 
+      div.clearfix
+        = f.input :email
         = f.input :password , :hint => (resource.errors.any? ? false : "(leave blank if you don't want to change it)"), :hint_html => { :class => 'help-block' }
         = f.input :password_confirmation 
         = f.input :current_password, :hint => (resource.errors.any? ? false : "(we need your current password to confirm your changes)"), :hint_html => { :class => 'help-block' }
