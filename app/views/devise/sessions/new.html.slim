@@ -3,14 +3,10 @@ div.container
 
   div.form-stacked
     = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-
-      div.clearfix
-        = f.input :email
-        = f.input :password
-        br
-        - if devise_mapping.rememberable? 
-          = f.input :remember_me , :as => :boolean
-
+      = f.input :email
+      = f.input :password
+      - if devise_mapping.rememberable? 
+        = f.input :remember_me , :as => :boolean
 
       div.actions
         = f.button :submit, "Sign in" ,:class=> "btn mod "
