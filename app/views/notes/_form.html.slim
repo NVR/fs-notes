@@ -1,16 +1,16 @@
-= simple_form_for @note do |f| 
-  - if @note.errors.any? 
+= simple_form_for note do |f| 
+  - if note.errors.any? 
     - @title ='Error'
 
   fieldset.form-stacked
-    div.clearfix class=( @note.errors[:title].any? ? 'error':'')
+    div.clearfix class=( note.errors[:title].any? ? 'error':'')
         = f.input :title, :required => false
       
     div.clearfix
       div.checkbox
         = f.association :topics, :as => :check_boxes
 
-    div.clearfix  class=( @note.errors[:body].any? ? 'error':'')
+    div.clearfix  class=( note.errors[:body].any? ? 'error':'')
         = f.input :body, :required => false
 
     div.actions
@@ -19,9 +19,9 @@
 
       - if @title == 'Edit note' or @title == 'Error'
         li.btn.danger.white
-          = link_to 'Remove', @note, confirm: 'Are you sure?', method: :delete 
+          = link_to 'Remove', note, confirm: 'Are you sure?', method: :delete 
       li.btn.black
         - if @title == 'New note'
           = link_to 'Cancel', notes_path 
         - else
-          = link_to 'Cancel', @note
+          = link_to 'Cancel', note
