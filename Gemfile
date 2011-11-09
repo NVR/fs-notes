@@ -24,6 +24,7 @@ gem 'decent_exposure'
 
 group :development do
   gem 'sqlite3'
+  gem 'rspec-rails'
 end
 
 group :production do
@@ -53,6 +54,6 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
-  # Pretty printed test output
+  gem 'rspec-rails'
   gem 'turn', :require => false
 end
