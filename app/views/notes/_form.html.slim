@@ -1,41 +1,27 @@
-= form_for(@note) do |f| 
-  - if @note.errors.any? 
+= simple_form_for note do |f| 
+  - if note.errors.any? 
     - @title ='Error'
-    div.error_explanation.alert-message.block-message.error
-      h2 #{pluralize(@note.errors.count, "error")} prohibited this note from being saved:
-      ul
-        - @note.errors.full_messages.each do |msg| 
-          li = msg 
-
 
   fieldset.form-stacked
-    div.clearfix class=( @note.errors[:title].any? ? 'error':'')
-      = f.label :title 
-      div.input
-        = f.text_field :title 
+    div.clearfix class=( note.errors[:title].any? ? 'error':'')
+        = f.input :title, :required => false
       
     div.clearfix
-      = f.label "Topics"
-      - existing_topics.each do |topic|
-        div.input.checkbox
-          = check_box_tag "note[topic_ids][]", topic.id, @note.topics.include?(topic)
-          = topic.name 
+      div.checkbox
+        = f.association :topics, :as => :check_boxes
 
-    div.clearfix class=( @note.errors[:body].any? ? 'error':'')
-      = f.label :body 
-      div class="input"
-        = f.text_area :body ,:rows=>'7'
+    div.clearfix  class=( note.errors[:body].any? ? 'error':'')
+        = f.input :body, :required => false
 
     div.actions
-      = f.submit :class => "btn primary mod" , :value => (@title == 'Edit note' ? "Update" : "Create Note")
-      
-      =f.submit :class => "btn info mod" , :value => "Preview"
+      = f.button :submit, :class => "btn primary mod" , :value => (@title == 'Edit note' ? "Update" : "Create Note")
+      = f.button :submit, :class => "btn info mod" , :value => "Preview"
 
       - if @title == 'Edit note' or @title == 'Error'
         li.btn.danger.white
-          = link_to 'Remove', @note, confirm: 'Are you sure?', method: :delete 
+          = link_to 'Remove', note, confirm: 'Are you sure?', method: :delete 
       li.btn.black
         - if @title == 'New note'
           = link_to 'Cancel', notes_path 
         - else
-          = link_to 'Cancel', @note
+          = link_to 'Cancel', note

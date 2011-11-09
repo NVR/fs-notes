@@ -2,13 +2,9 @@ div.container
   h2.page-header Resend confirmation instructions
 
   div.form-stacked
-    = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| 
-      = devise_error_messages!
+    = simple_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do  |f| 
+      = f.input :email 
 
-      div
-        = f.label :email
-        = f.email_field :email 
-
-      div
-        = f.submit "Resend confirmation instructions" ,:class=> "btn"
+      div.actions
+        = f.button :submit, "Resend confirmation instructions" ,:class => "btn"
         = render :partial => "devise/shared/links" 

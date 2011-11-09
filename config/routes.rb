@@ -1,26 +1,14 @@
 FsNotes::Application.routes.draw do
-  
-  match '/search', :to =>"notes#index"
 
   devise_for :users
 
-  resources :notes 
+  resources :notes
 
   root :to => "notes#index"
-  
-  match '/about', :to => 'static_pages#About'
 
-  match '/imprint', :to => 'static_pages#Imprint'
-  
-  match '/terms', :to => 'static_pages#TermsOfService'
-
-  match '/policy', :to => 'static_pages#PrivacyPolicy'
-
-  match '/topics', :to => 'notes#topics'
-
-  resources :topics, :only =>'show'
- 
- 
+  resources :topics, :only => 'show' do
+    resources :notes, :only => 'index'
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

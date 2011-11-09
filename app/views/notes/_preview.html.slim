@@ -1,6 +1,6 @@
 div
-  = form_for(@note) do |f| 
-    - if @note.errors.any? 
+  =simple_form_for note do |f| 
+    - if note.errors.any? 
       - @title ='Error'
       div.error_explanation.alert-message.block-message.error
         h2 #{pluralize(@note.errors.count, "error")} prohibited this note from being saved:
@@ -9,18 +9,18 @@ div
             li = msg 
 
     div.hidden
-      = f.text_field :title 
+      = f.input :title 
     div.hidden
-      = f.text_area :body ,:rows=>'1'
+      = f.input :body ,:rows=>'1'
 
     h1.page-header = @note.title
-    p.body = markdown(@note.body)
+    p.body = markdown(note.body)
 
     div.actions.padding
-      = f.submit :class => "btn primary mod" , :value => (@title == 'Edit note' ? "Save changes" : "Save Note")
-      = f.submit :class => "btn info mod" , :value => "Back"
+      = f.button :submit, :class => "btn primary mod" , :value => (@title == 'Edit note' ? "Save changes" : "Save Note")
+      = f.button :submit, :class => "btn info mod" , :value => "Back"
       li.btn.black
         - if @title == 'New note'
           = link_to 'Cancel', notes_path 
         - else
-          = link_to 'Cancel', @note
+          = link_to 'Cancel', note
