@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
   def feed
     Note.where("user_id = ?", id)
   end
+  
 end
