@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Note do
-
   before(:each) do
     @note = Note.new
   end

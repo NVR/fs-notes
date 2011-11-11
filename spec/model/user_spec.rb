@@ -14,4 +14,8 @@ describe User do
     Note.where("user_id = ?", @user.id).should_not be_nil
   end
 
+  it "should be feed" do
+    @user.feed.should eq(Note.where("user_id = ?", @user.id))
+  end
+
 end
