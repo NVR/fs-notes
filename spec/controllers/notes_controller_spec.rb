@@ -37,6 +37,10 @@ describe NotesController do
       get 'index', page: '1000'
       response.should be_success
     end
+    it "should redirect to root path on  404 exception" do
+      get 'index', id: '10000'
+      response.should be_success
+    end
   end
 
   describe "GET 'edit'" do
@@ -70,7 +74,7 @@ describe NotesController do
     end
 
     it "should allow return to edit form" do
-      put 'update', id: test_note_1.to_param, note: test_note_1.attributes, commit: 'Back'
+      put 'update', id: test_note_1.to_param, note: test_note_1.attributes, commit: 'Edit'
       response.should be_success
     end
 
@@ -84,7 +88,7 @@ describe NotesController do
   describe "GET 'create'" do
     it "should create note with params" do
       post 'create', note: test_note_1.attributes
-      response.should redirect_to note_path(assigns(:note))
+      response.should_not be_success
     end
 
     it "should allow preview" do
@@ -93,7 +97,7 @@ describe NotesController do
     end
 
     it "should allow return to edit form" do
-      post 'create', note: test_note_1.attributes, commit: 'Back'
+      post 'create', note: test_note_1.attributes, commit: 'Edit'
       response.should be_success
     end
 
