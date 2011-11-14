@@ -3,12 +3,12 @@ div
     - if note.errors.any? 
       - @title ='Error'
 
-    div.hidden class=( note.errors[:title].any? ? 'error':'')
+    div.hidden
       = f.input :title, :required => false
-    div.hidden class=( note.errors[:body].any? ? 'error':'')
+    div.hidden
       = f.input :body, :rows=>'1', :required => false
 
-    h1.page-header = @note.title
+    h1.page-header = note.title
     p.body = markdown(note.body)
 
     div.actions.padding

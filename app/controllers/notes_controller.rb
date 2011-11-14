@@ -3,7 +3,9 @@ class NotesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :page_exceedance?
   before_filter :can_edit?, :only => [:edit, :delete]
-  expose :note
+  expose(:note) do
+    note =(params[:id].present?) ? Note.find(params[:id]) : current_user.notes.build(params[:note])
+  end
   expose :topic
   expose(:notes) do
     notes_with_scope = (params[:topic_id].present?) ? topic.notes : Note.scoped
@@ -30,7 +32,6 @@ class NotesController < ApplicationController
   end
 
   def create
-    @note = current_user.notes.build(params[:note])
     @title = 'New note'
     if params[:commit] == "Preview"
       @preview = true
@@ -39,8 +40,8 @@ class NotesController < ApplicationController
       @preview = false
       render action: 'new'
     else
-      if @note.save
-        redirect_to @note, notice: 'Note was successfully created.' 
+      if note.save
+        redirect_to note, notice: 'Note was successfully created.' 
       else
         render action: "new" 
       end
