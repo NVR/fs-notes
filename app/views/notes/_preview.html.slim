@@ -9,9 +9,9 @@ div
             li = msg 
 
     div.hidden
-      = f.input :title 
+      = f.input :title, :required => false
     div.hidden
-      = f.input :body ,:rows=>'1'
+      = f.input :body, :rows=>'1', :required => false
 
     h1.page-header = @note.title
     p.body = markdown(note.body)
