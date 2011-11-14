@@ -35,7 +35,7 @@ class NotesController < ApplicationController
     if params[:commit] == "Preview"
       @preview = true
       render action: 'new'
-    elsif params[:commit] == "Back"
+    elsif params[:commit] == "Edit"
       @preview = false
       render action: 'new'
     else
@@ -52,7 +52,7 @@ class NotesController < ApplicationController
       note.update_attributes(params[:note])
       @preview = true
       render action: "edit"
-    elsif params[:commit] == "Back"
+    elsif params[:commit] == "Edit"
       @preview = false
       render action: "edit"
     else
