@@ -6,11 +6,8 @@ describe NotesController do
   before (:all) do
     Topic.create(:name => 'Opal')
   end
-
-  before(:each) do
-    @test_note = Note.create(:title => 'Some title', :body => 'Some body', :user_id => '1')
-    @test_note_2 = Note.create(:title => 'Some title', :body => 'Some body', :user_id => '2')
-  end
+  let(:test_note_1) { Note.create(:title => 'Some title', :body => 'Some body', :user_id => '1')}
+  let(:test_note_2) { Note.create(:title => 'Some title', :body => 'Some body', :user_id => '2')}
 
   describe "GET 'new'" do
     it "should have title" do
@@ -44,72 +41,72 @@ describe NotesController do
 
   describe "GET 'edit'" do
     it "should have title" do
-      get 'edit', id: @test_note.to_param
+      get 'edit', id: test_note_1.to_param
       response.should have_selector("title", :content => "Edit note")
     end
 
     it "should not allow to edit other users' notes" do
-      get 'edit', id: @test_note_2.to_param
+      get 'edit', id: test_note_2.to_param
       response.should_not be_success
     end
   end
 
   describe "GET 'destroy'" do
     it "should delete note" do
-      delete 'destroy', id: @test_note.to_param
+      delete 'destroy', id: test_note_1.to_param
       response.should redirect_to notes_path
     end
   end
 
   describe "GET 'update'" do
     it "should update note" do
-      put 'update', id: @test_note.to_param, note: @test_note.attributes
+      put 'update', id: test_note_1.to_param, note: test_note_1.attributes
       response.should redirect_to note_path(assigns(:note))
     end
 
     it "should allow preview" do
-      put 'update', id: @test_note.to_param, commit: 'Preview'
+      put 'update', id: test_note_1.to_param, commit: 'Preview'
       response.should be_success
     end
 
     it "should allow return to edit form" do
-      put 'update', id: @test_note.to_param, note: @test_note.attributes, commit: 'Back'
+      put 'update', id: test_note_1.to_param, note: test_note_1.attributes, commit: 'Back'
       response.should be_success
     end
 
     it "should not save updates,if they are having errors" do
-      @test_note.title = nil
-      put 'update',id: @test_note.to_param, note: @test_note.attributes, commit: 'Update'
+      test_note_1.title = nil
+      put 'update',id: test_note_1.to_param, note: test_note_1.attributes, commit: 'Update'
       response.should be_success
     end
   end
 
   describe "GET 'create'" do
     it "should create note with params" do
-      post 'create', note: @test_note.attributes
+      post 'create', note: test_note_1.attributes
       response.should redirect_to note_path(assigns(:note))
     end
 
     it "should allow preview" do
-      post 'create', note: @test_note.attributes, commit: 'Preview'
+      post 'create', note: test_note_1.attributes, commit: 'Preview'
       response.should be_success
     end
 
     it "should allow return to edit form" do
-      post 'create', note: @test_note.attributes, commit: 'Back'
+      post 'create', note: test_note_1.attributes, commit: 'Back'
       response.should be_success
     end
 
     it "should not save note,if it is having errors" do
-      @test_note.title = nil
-      post 'create', note: @test_note.attributes, commit: 'Create Note'
+      test_note_1.title = nil
+      post 'create', note: test_note_1.attributes, commit: 'Create Note'
       response.should be_success
     end
   end
 
   describe "GET 'show'" do
     it "should be success" do
-      get 'show', id: @test_note.to_param
+      get 'show', id: test_note_1.to_param
       response.should be_success
     end
   end
