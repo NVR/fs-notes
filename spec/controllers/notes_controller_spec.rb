@@ -4,19 +4,19 @@ describe NotesController do
   login_user
   render_views
   before (:all) do
-    @preview = false
     Topic.create(:name => 'Opal')
   end
 
   before(:each) do
-    @test_note = Note.create(:id => '1', :title => 'Some title', :body => 'Some body', :user_id => '1')
-    @test_note_2 = Note.create(:id => '2', :title => 'Some title', :body => 'Some body', :user_id => '2')
+    @test_note = Note.create(:title => 'Some title', :body => 'Some body', :user_id => '1')
+    @test_note_2 = Note.create(:title => 'Some title', :body => 'Some body', :user_id => '2')
   end
 
   describe "GET 'new'" do
     it "should have title" do
       get 'new'
       response.should have_selector("title", :content => "New note")
+      response.should be_success
     end
   end
 

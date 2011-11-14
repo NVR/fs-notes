@@ -17,9 +17,6 @@ gem 'nokogiri'
 #pagination gem
 gem 'kaminari'
 
-#simplecov
-gem 'simplecov', :require => false, :group => :test
-
 #readable_code
 gem 'slim'
 gem 'simple_form'
@@ -65,6 +62,7 @@ group :test do
   gem 'webrat'
   gem 'autotest'
   gem 'ZenTest'
+  gem 'simplecov', :require => false
   gem 'capybara'
   gem 'turn', :require => false
 end
