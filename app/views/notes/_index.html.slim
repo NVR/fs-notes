@@ -1,9 +1,15 @@
+- count = 0
 - @notes.each do |note| 
+  - count +=1
+  - if (count%3 == 1) && !(count == 1)
+    br
   div.notes.alert-message.block-message.shadow.info
     div.page-header
           h3.title = link_to note.title, note 
     div.overflow
       p.body.ellipsis         
         = markdown(note.body)
+
 div.pagecenter
   = paginate @notes
+
