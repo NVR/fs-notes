@@ -10,8 +10,8 @@ div.topbar
       ul.nav.secondary-nav
         - if user_signed_in?
           li = link_to 'New Note', new_note_path
-          li = link_to "Signed in as  #{current_user.email} ",edit_user_registration_path
-          li = link_to "Not you? Sign out" , destroy_user_session_path, :method => 'delete'
+          li = link_to "#{current_user.email} ",edit_user_registration_path
+          li = link_to "Sign out" , destroy_user_session_path, :method => 'delete'
         - else
           li = link_to "Sign up", new_user_registration_path 
           li = link_to "Sign in", new_user_session_path

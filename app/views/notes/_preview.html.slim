@@ -2,15 +2,10 @@ div
   =simple_form_for note do |f| 
     - if note.errors.any? 
       - @title ='Error'
-      div.error_explanation.alert-message.block-message.error
-        h2 #{pluralize(@note.errors.count, "error")} prohibited this note from being saved:
-        ul
-          - @note.errors.full_messages.each do |msg| 
-            li = msg 
 
-    div.hidden
+    div.hidden class=( note.errors[:title].any? ? 'error':'')
       = f.input :title, :required => false
-    div.hidden
+    div.hidden class=( note.errors[:body].any? ? 'error':'')
       = f.input :body, :rows=>'1', :required => false
 
     h1.page-header = @note.title
