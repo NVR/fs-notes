@@ -6,7 +6,7 @@ div.container
         p = note.user.email
       div
         h3.page-header Other notes from this author
-        - @usernotes = note.user.notes
+        - @usernotes = note.user.notes.limit(4)
         - @usernotes.each do |note| 
           - unless not_current?(note)
             div.shadow.alert-message.block-message.info
