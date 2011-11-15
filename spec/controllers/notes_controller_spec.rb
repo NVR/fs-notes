@@ -40,6 +40,15 @@ describe NotesController do
     it "should redirect to root path on  404 exception" do
       get 'index', id: '10000'
       response.should be_success
+      response.should raise_error
+    end
+  end
+
+  describe "GET 'show'"do
+    it "should redirect to root_path , then note doesn't exist"do
+      get 'show', id: '1000'
+      response.should raise_error
+      response.should redirect_to(root_path)
     end
   end
 
