@@ -4,11 +4,13 @@ class NotesController < ApplicationController
   before_filter :page_exceedance?
   before_filter :can_edit?, :only => [:edit, :delete]
   expose(:note) do
-    note =(params[:id].present?) ? Note.find(params[:id]) : current_user.notes.build(params[:note])
+    note = (params[:id].present?) ? Note.find(params[:id]) : current_user.notes.build(params[:note])
   end
   expose :topic
+  expose :user
   expose(:notes) do
     notes_with_scope = (params[:topic_id].present?) ? topic.notes : Note.scoped
+    notes_with_scope = user.notes if params[:user_id].present?
     notes_with_scope = notes_with_scope.search(params[:search]) if params[:search].present?
     notes_with_scope
   end

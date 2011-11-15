@@ -12,7 +12,7 @@ div
     p.body = markdown(note.body)
 
     div.actions.padding
-      = f.button :submit, :class => "btn primary mod" , :value => (@title == 'Edit note' ? "Save changes" : "Save")
+      = f.button :submit, :class => "btn primary mod" , :value => (params[:id].present? ? "Update" : "Create")
       = f.button :submit, :class => "btn info mod" , :value => "Edit"
       li.btn.black
         - if @title == 'New note'

@@ -1,6 +1,9 @@
 FsNotes::Application.routes.draw do
 
-  devise_for :users
+  devise_for :users 
+  resources :users do
+    resources :notes , :only => 'index'
+  end
 
   resources :notes
 

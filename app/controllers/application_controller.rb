@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
      Topic.all
   end
 
+  private
+  
   def someredirect
     redirect_to root_path
   end
