@@ -11,7 +11,7 @@ class NotesController < ApplicationController
   expose(:notes) do
     notes_with_scope = (params[:topic_id].present?) ? topic.notes : Note.scoped.order("created_at  DESC")
     Rails.logger.debug
-    notes_with_scope = user.notes if params[:user_id].present?
+    notes_with_scope = notes_with_scope.user_notes(params[:user_id]) if params[:user_id].present?
     notes_with_scope = notes_with_scope.search(params[:search]) if params[:search].present?
     notes_with_scope
   end
