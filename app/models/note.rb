@@ -1,9 +1,8 @@
 class Note < ActiveRecord::Base
 
-  scope :search,->(search,user_id = '') { 
+  scope :search,->(search,user_id = nil) { 
     search_condition = "%" + search + "%"
-    userid_formatted = (user_id.present? ? "%" + user_id + "%" : "")
-    where('title LIKE ? OR body LIKE ? AND user_id LIKE ?', search_condition, search_condition, userid_formatted )
+    where('title LIKE ? OR body LIKE ?', search_condition, search_condition)
   } 
   scope :user_notes,->(user_id){
     userid_formatted = "%" + user_id + "%"

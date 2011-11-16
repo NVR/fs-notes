@@ -1,5 +1,5 @@
 div.align
-  = form_tag search_path(params[:topic_id]), :method => 'get' do 
+  = form_tag search_path(params[:topic_id],params[:user_id]), :method => 'get' do 
     = text_field_tag :search, params[:search], :id => 'search_field' , :class => "mod"
     = submit_tag "Search", :name => nil , :class => "btn primary"
     span.mod = pluralize @count, 'note', 'notes'
