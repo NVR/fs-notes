@@ -28,6 +28,11 @@ describe NotesController do
       response.should be_success
     end
 
+    it "should even  work with users" do
+      get 'index', user_id: '1'
+      response.should be_success
+    end
+
     it "should have search function" do
       get 'index', topic_id: '1', search: "foobar"
       response.should be_success
