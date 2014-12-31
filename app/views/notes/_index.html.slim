@@ -1,9 +1,10 @@
 - @notes.each do |note| 
-  div.notes.alert-message.block-message.shadow.info
+  div.notes.shadow.block-message.info.alert-message
     div.page-header
           h3.title = link_to note.title, note 
     div.overflow
       p.body.ellipsis         
         = markdown(note.body)
 
-= paginate @notes
+div.align
+  = paginate @notes

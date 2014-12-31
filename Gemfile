@@ -24,6 +24,11 @@ gem 'decent_exposure'
 
 group :development do
   gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'webrat'
+  gem 'autotest'
+  gem 'ZenTest'
+  gem 'capybara'
 end
 
 group :production do
@@ -53,6 +58,11 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
-  # Pretty printed test output
+  gem 'rspec-rails'
+  gem 'webrat'
+  gem 'autotest'
+  gem 'ZenTest'
+  gem 'simplecov', :require => false
+  gem 'capybara'
   gem 'turn', :require => false
 end

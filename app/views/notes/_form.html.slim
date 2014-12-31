@@ -3,18 +3,16 @@
     - @title ='Error'
 
   fieldset.form-stacked
-    div.clearfix class=( note.errors[:title].any? ? 'error':'')
-        = f.input :title, :required => false
+    = f.input :title, :required => false , :input_html => { :class => 'form_title' }
       
-    div.clearfix
-      div.checkbox
-        = f.association :topics, :as => :check_boxes
+    div.checkbox
+      = f.association :topics, :as => :check_boxes
 
-    div.clearfix  class=( note.errors[:body].any? ? 'error':'')
+    div class=( note.errors[:body].any? ? 'clearfix error':'')
         = f.input :body, :required => false
 
     div.actions
-      = f.button :submit, :class => "btn primary mod" , :value => (@title == 'Edit note' ? "Update" : "Create Note")
+      = f.button :submit, :class => "btn primary mod" , :value => (params[:id].present? ? "Update" : "Create")
       = f.button :submit, :class => "btn info mod" , :value => "Preview"
 
       - if @title == 'Edit note' or @title == 'Error'

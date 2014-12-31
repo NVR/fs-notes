@@ -3,11 +3,15 @@ class NotesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :page_exceedance?
   before_filter :can_edit?, :only => [:edit, :delete]
-  expose :note
+  expose(:note) do
+    note = (params[:id].present?) ? Note.find(params[:id]) : current_user.notes.build(params[:note])
+  end
   expose :topic
+  expose :user
   expose(:notes) do
-    notes_with_scope = (params[:topic_id].present?) ? topic.notes : Note.scoped
-    notes_with_scope = notes_with_scope.search(params[:search]) if params[:search].present?
+    notes_with_scope = (params[:topic_id].present?) ? topic.notes : Note.scoped.order("created_at  DESC")
+    notes_with_scope = notes_with_scope.user_notes(params[:user_id]) if params[:user_id].present?
+    notes_with_scope = notes_with_scope.search(params[:search],) if params[:search].present?
     notes_with_scope
   end
 
@@ -30,17 +34,16 @@ class NotesController < ApplicationController
   end
 
   def create
-    @note = current_user.notes.build(params[:note])
     @title = 'New note'
     if params[:commit] == "Preview"
       @preview = true
       render action: 'new'
-    elsif params[:commit] == "Back"
+    elsif params[:commit] == "Edit"
       @preview = false
       render action: 'new'
     else
-      if @note.save
-        redirect_to @note, notice: 'Note was successfully created.' 
+      if note.save
+        redirect_to note, notice: 'Note was successfully created.' 
       else
         render action: "new" 
       end
@@ -52,7 +55,7 @@ class NotesController < ApplicationController
       note.update_attributes(params[:note])
       @preview = true
       render action: "edit"
-    elsif params[:commit] == "Back"
+    elsif params[:commit] == "Edit"
       @preview = false
       render action: "edit"
     else

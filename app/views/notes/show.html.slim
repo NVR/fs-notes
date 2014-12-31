@@ -1,35 +1,37 @@
-div.container-fluid
-  div.sidebar
-    div.alert-message.block-message.shadow.warning
-      h1.page-header Author
-      p = note.user.email
-    div
-      h3.page-header Other notes from this author
-      - @usernotes = note.user.notes
-      - @usernotes.each do |note| 
-        - unless not_current?(note)
-          div.shadow.alert-message.block-message.info
-            div.small-block
-              div.page-header
-                h4.title = link_to note.title, note 
-              p.body.ellipsis         
-                  = markdown(note.body)
-
-  div.content
-    - if notice.present?
-      p.alert-message = notice 
-
-    div
+div.container
+  div.container-fluid
+    div.sidebar
+      div.alert-message.block-message.shadow.warning
+        h3.page-header Author
+        p = note.user.email
+      div
+        h3.page-header Other notes from this author
+        - @usernotes = note.user.notes.limit(4)
+        - @usernotes.each do |note| 
+          - unless not_current?(note)
+            div.shadow.alert-message.block-message.info
+              div.small-block
+                div.page-header
+                  h4.title = link_to note.title, note 
+                p.body.ellipsis         
+                    = markdown(note.body)
+        = link_to "Even more notes..." , user_notes_path(note.user.id), :class => 'btn success'
+    div.content
+      - if notice.present?
+        p.alert-message = notice 
 
       div
-        div.page-header
-          h1 = note.title 
-          i.help-block.topic Topics:
-          - note.topics.each do |topic|
-            i.help-block.topic = link_to topic.name, topic_path(topic.id)
-        p.body 
-          = markdown(note.body)
-        p.timestamp Posted #{time_ago_in_words(note.created_at)} ago
-        div.actions.padding
-          - if editable?(note)
-            = link_to 'Edit', edit_note_path(note), :class => 'btn'
+
+        div
+          div.page-header
+            h1 = note.title 
+            - if note.topics.present?
+              i.help-block.topic Topics:
+              - note.topics.each do |topic|
+                i.help-block.topic = link_to topic.name, topic_path(topic.id)
+          p.body 
+            = markdown(note.body)
+          p.timestamp Posted #{time_ago_in_words(note.created_at)} ago
+          div.actions.padding
+            - if editable?(note)
+              = link_to 'Edit', edit_note_path(note), :class => 'btn'

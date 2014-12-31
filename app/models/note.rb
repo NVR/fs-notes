@@ -4,6 +4,11 @@ class Note < ActiveRecord::Base
     search_condition = "%" + search + "%"
     where('title LIKE ? OR body LIKE ?', search_condition, search_condition)
   } 
+  scope :user_notes,->(user_id){
+    userid_formatted = "%" + user_id + "%"
+    where('user_id LIKE ?', userid_formatted)
+  }
+
 
   PER_PAGE = 9
 

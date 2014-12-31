@@ -1,5 +1,8 @@
-div.container.searchcenter
-  = form_tag search_path(params[:topic_id]), :method => 'get' do 
+div.align
+  = form_tag search_path(params[:topic_id],params[:user_id]), :method => 'get' do 
     = text_field_tag :search, params[:search], :id => 'search_field' , :class => "mod"
     = submit_tag "Search", :name => nil , :class => "btn primary"
     span.mod = pluralize @count, 'note', 'notes'
+
+    - if user_signed_in? 
+      = link_to 'New Note', new_note_path, :class => 'btn success newnote_align'

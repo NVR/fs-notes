@@ -7,11 +7,11 @@ module ApplicationHelper
     Redcarpet.new(text, *options).to_html.html_safe
   end
 
-  def search_path(topic_id = nil)
+  def search_path(topic_id = nil, user_id = nil)
     if topic_id
       topic_notes_path(topic_id)
     else
-      notes_path
+      user_id.present? ? user_notes_path(user_id) : notes_path
     end
   end
 
